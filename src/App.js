@@ -11,7 +11,12 @@ function App() {
   });
 
   const changeHandler = (e) => {
-    setFormState({ [e.target.name] : e.target.value })
+    console.log('e.target.name', e.target.name);
+    console.log('e.target.value', e.target.value);
+    setFormState((prevState) => ({
+      ...prevState,
+      [e.target.name] : e.target.value
+    }))
   }
 
   const submitHandler = (e) => {
