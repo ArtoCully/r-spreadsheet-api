@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios';
 import { Button, Form, Container, Header } from 'semantic-ui-react'
 import './App.css';
 
@@ -22,6 +23,15 @@ function App() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(formState);
+    // TODO: Update this to trigger straight to google sheets
+    const url = `https://sheet.best/api/sheets/${process.env.REACT_APP_GOOGLE_SHEET}`;
+    axios.post(url, formState)
+      .then((response) => {
+        console.log('Success posting', response);
+      })
+      .catch((error) => {
+        console.log('Error posting', error);
+      });
   }
 
   return (
